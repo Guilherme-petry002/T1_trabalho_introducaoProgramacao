@@ -4,28 +4,51 @@
 
 int main(){
 
-int candidata[1000];
+int cand[10000];
 int i;
-int k;
 
-//While percorrendo a candidata e adicionando nota para cada uma
-i = 1;
-    while(i < 1001){
-        k = 1;
-        printf("digite a nota da candidata na pos[%d]\n", i);
-        scanf("%d", &candidata[i]);
+printf("Qual a nota da primeira candidata? ");
+scanf("%d", &cand[i]);
 
-        while(k >= i){
-            if(candidata[i] % 2 == 0){
-                k = (((candidata[i] * 2) + 13) - 1);
-            } else if (candidata[i] % 2 != 0){
-                k = (((candidata[i] * 3) + 7) - 1);    
-            }
-        k++;
-        }
-        i = k;
-    i++;
+cand[0] = i;
+
+i = 0;
+//Criando a lista
+while(i < 10000){
+    cand[i + 1] = (((cand[i] * 87) % 601) + 400);
+i++;
+}
+
+int pos;
+int count;
+int tequila = 0;
+
+while(pos >= 0 && pos < 10000){
+
+    printf("Posicao: %d | Nota: %d\n", pos, cand[pos]);
+
+    count++;
+    cand[pos] += 1;
+
+    printf("Nota nova: %d\n", cand[pos]);
+
+    if(cand[pos] % 2 == 0){
+        pos = (2 * pos) + 13;
+        tequila++;
+        printf("Nota par indo para: %d\n", pos);
+    } else if(cand[pos] % 2 != 0){
+        pos = (3 * pos) + 7;
+        tequila++;
+        printf("Nota impar indo para: %d\n", pos);
     }
+
+    if(pos > 10000){
+        printf("Fim da mesa\n");
+    }
+
+}
+
+printf("Total de conversas: %d\nTequilas tomadas: %d\n", count, tequila);
 
 return 0;
 
