@@ -34,10 +34,22 @@ while(pos >= 0 && pos < 10000){
 
     if(cand[pos] % 2 == 0){
         pos = (2 * pos) + 13;
+
+        if(pos > 10000){
+            continue;
+        }
+
         tequila++;
         printf("Nota par indo para: %d\n", pos);
+
     } else if(cand[pos] % 2 != 0){
         pos = (3 * pos) + 7;
+        tequila++;
+
+        if(pos > 10000){
+            continue;
+        }
+
         tequila++;
         printf("Nota impar indo para: %d\n", pos);
     }
